@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #b2dbc0;
+  font-family: sans-serif;
 }
 
 div {
@@ -41,6 +42,30 @@ main {
     border-style: inset;
   }
 }
+@media screen and (max-height: 650px) {
+  .main-container {
+    display: none;
+  }
+}
+
+.disclaimer {
+  text-align: center;
+  color: #fff;
+  width: 80%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  padding: 50px 20px;
+  background-color: #08917c;
+  box-shadow: 0px 0 20px 5px rgba(0, 0, 0, 0.5);
+}
+@media screen and (max-height: 650px) {
+  .disclaimer {
+    display: flex;
+  }
+}
 
 .scene {
   position: absolute;
@@ -75,6 +100,92 @@ main {
 .panel__4 {
   background-image: url("../assets/panel_04.png");
   background-position: bottom right;
+}
+
+.modal {
+  display: none;
+  z-index: 30;
+  height: 100%;
+  width: 100%;
+  padding: 50px;
+  position: relative;
+}
+.modal.active {
+  display: block;
+}
+.modal__content {
+  padding: 20px 20px 50px 20px;
+  border-radius: 10px;
+  background-color: rgba(137, 7, 147, 0.65);
+  color: white;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.modal__button {
+  position: absolute;
+  background: rgb(54, 4, 61);
+  padding: 20px;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  display: flex;
+  line-height: 0;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  left: 50%;
+  transform: translate3d(-50%, 50%, 10px);
+  border: none;
+}
+.modal__entry {
+  margin-bottom: 10px;
+}
+
+.icon {
+  height: 30px;
+  width: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: block;
+}
+.icon__help {
+  background-image: url(../assets/icons/help.svg);
+}
+.icon__date {
+  background-image: url(../assets/icons/date.svg);
+}
+.icon__map {
+  background-image: url(../assets/icons/map.svg);
+}
+.icon__envelope {
+  width: 45px;
+  height: 45px;
+  background-image: url(../assets/icons/envelope.svg);
+}
+.icon__clothes {
+  background-image: url(../assets/icons/clothes.svg);
+}
+.icon__close {
+  background-image: url(../assets/icons/close.svg);
+}
+.icon__sad {
+  background-image: url(../assets/icons/sad.svg);
+}
+
+a {
+  text-decoration: none;
+  background-color: aqua;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+p {
+  margin: 10px 0;
 }
 
 .scene-1 {
@@ -214,8 +325,41 @@ main {
 .scene-2 {
   z-index: 5;
 }
+.scene-2.active {
+  z-index: 20;
+}
 .scene-2 > * {
   opacity: 0;
+}
+.scene-2__info {
+  background-color: #e54ae9;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  left: 55px;
+  top: 73px;
+  border: solid 2px white;
+  color: white;
+  line-height: 0px;
+  vertical-align: middle;
+  box-shadow: 0 1px 10px 3px rgba(91, 47, 0, 0.5);
+  font-weight: 800;
+  transition: opacity 0.5s 2s ease-in, transform 0.5s 2s ease-in;
+  transform: scale3d(1.5, 1.5, 1.5);
+  z-index: 10;
+  padding: 3px;
+}
+.scene-2__info.active {
+  animation-name: bounce;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+.scene-2__info.pressed {
+  animation: none;
 }
 .scene-2__hana {
   height: 100%;
@@ -226,6 +370,11 @@ main {
   background-repeat: no-repeat;
   transform: scale3d(1.2, 1.2, 1.2);
   transition: opacity 0.5s 0.2s ease-in, transform 0.5s 0.2s ease-in;
+}
+@media screen and (max-height: 700px) {
+  .scene-2__hana {
+    background-size: cover;
+  }
 }
 .scene-2__years-text {
   height: 200px;
@@ -379,6 +528,10 @@ main {
   transform: translate3d(0, 0, 0);
   opacity: 1;
 }
+.scene-2.animating .scene-2__info {
+  opacity: 1;
+  transform: scale3d(1, 1, 1);
+}
 
 @keyframes halo {
   0% {
@@ -411,5 +564,22 @@ main {
   }
   100% {
     transform: translate3d(50%, -40%, 10px);
+  }
+}
+@keyframes bounce {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  40% {
+    transform: scale3d(1, 1, 1);
+  }
+  45% {
+    transform: scale3d(1.25, 1.25, 1.25);
+  }
+  50% {
+    transform: scale3d(1, 1, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
   }
 }/*# sourceMappingURL=main.css.map */
