@@ -2,7 +2,7 @@ html,
 body {
 	margin: 0;
 	padding: 0;
-	background-color: bisque;
+	background-color: #b2dbc0;
 }
 
 main {
@@ -28,6 +28,10 @@ main {
 	overflow: hidden;
 	background-image: url("../assets/bg.jpg");
 	background-size: cover;
+	border-radius: 15px;
+	box-shadow: 0 20px 20px 10px rgba(26, 41, 29, 0.2);
+	border: 4px solid rgb(205 53 207);
+	border-style: inset;
 }
 
 .scene {
@@ -109,6 +113,9 @@ main {
 		right: 50%;
 		transform: translate3d(50%, -50%, 10px);
 		transition: opacity 0.5s;
+		animation-name: jump;
+		animation-duration: 2s;
+		animation-iteration-count: infinite;
 
 		&.active {
 			opacity: 0;
@@ -119,7 +126,7 @@ main {
 		animation-duration: 2s;
 		animation-iteration-count: infinite;
 		transform-origin: right;
-		filter: brightness(5);
+		filter: brightness(1) blur(1px) saturate(200%);
 	}
 
 	&__top-text {
@@ -237,7 +244,7 @@ main {
 		width: 100%;
 		background-image: url("../assets/second_state/hana.png");
 		background-size: contain;
-		background-position: bottom center;
+		background-position: center 100px;
 		background-repeat: no-repeat;
 		transform: scale3d(1.2, 1.2, 1.2);
 		transition: opacity 0.5s 0.2s ease-in, transform 0.5s 0.2s ease-in;
@@ -408,14 +415,36 @@ main {
 @keyframes halo {
 	0% {
 		opacity: 1;
-		transform: scale3d(1, 1, 1) translate3d(50%, -40%, 10px);
+		transform: scale3d(1, 1, 1) translate3d(50%, -25%, 10px);
+		filter: blur(1px);
 	}
-	80% {
+	90% {
 		opacity: 0;
-		transform: scale3d(2, 2, 2) translate3d(50%, -100%, 10px);
+		transform: scale3d(2, 2, 2) translate3d(50%, -25%, 10px);
 	}
 	100% {
 		opacity: 0;
-		transform: scale3d(2, 2, 2) translate3d(50%, -250%, 10px);
+		transform: scale3d(4, 4, 4) translate3d(50%, -25%, 10px);
+		filter: blur(5px);
+	}
+}
+
+@keyframes jump {
+	0% {
+		transform: translate3d(50%, -40%, 10px);
+	}
+
+	48% {
+		transform: translate3d(50%, -80%, 10px);
+	}
+	50% {
+		transform: translate3d(50%, -80%, 10px);
+	}
+	52% {
+		transform: translate3d(50%, -80%, 10px);
+	}
+
+	100% {
+		transform: translate3d(50%, -40%, 10px);
 	}
 }

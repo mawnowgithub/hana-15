@@ -12,7 +12,7 @@ const ready = () => {
 		const playScene2 = setTimeout(() => {
 			scene2.classList.add("animating");
 			clearTimeout(playScene2);
-		}, 800);
+		}, 1500);
 	});
 };
 
