@@ -1,4 +1,5 @@
 const ready = () => {
+	const mainContainer = document.querySelector(".main-container");
 	const petalButton = document.querySelector("#petal");
 	const fallingPetals = document.querySelector("#falling");
 	const scene1 = document.querySelector(".scene-1");
@@ -8,6 +9,42 @@ const ready = () => {
 	const modalContent = modal.querySelector(".modal__content");
 	const modalButton = document.querySelector(".modal__button");
 	let modalShowTimer = null;
+	const frontGreet = document.querySelector("#front-greet");
+	const modalGreet = document.querySelector("#modal-greet");
+	const modalGreetTitle = modalGreet.querySelector(".modal-greet__title");
+	const modalGreetBody = modalGreet.querySelector(".modal-greet__body");
+	const genreOptions = {
+		n: "family",
+		h: "man",
+		m: "woman",
+	};
+
+	bodyGreet = (plural) => {
+		const custom = plural ? "su" : "tu";
+		const text = `Estos son los datos de nuestro evento. Esperamos contar con ${custom} asistencia.`;
+		return text;
+	};
+
+	getUrlData = () => {
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		let name = urlParams.get("name");
+		const genre = urlParams.get("gen");
+		name = name?.replaceAll("_", " ");
+		const plural = name?.search(" y ") > -1 || name?.search("F.") > -1;
+
+		if (name) {
+			frontGreet.innerHTML = name;
+			modalGreetTitle.innerHTML = name;
+			mainContainer.classList.add("greet-visible");
+			modalGreetBody.innerHTML = bodyGreet(plural);
+		}
+
+		if (genre) {
+			mainContainer.classList.add(genreOptions[genre]);
+		}
+	};
+	getUrlData();
 
 	petalButton.addEventListener("click", () => {
 		fallingPetals.style.visibility = "visible";
