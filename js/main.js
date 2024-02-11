@@ -5,7 +5,9 @@ const ready = () => {
 	const scene2 = document.querySelector(".scene-2");
 	const infoButton = document.querySelector(".scene-2__info");
 	const modal = document.querySelector(".modal");
+	const modalContent = modal.querySelector(".modal__content");
 	const modalButton = document.querySelector(".modal__button");
+	let modalShowTimer = null;
 
 	petalButton.addEventListener("click", () => {
 		fallingPetals.style.visibility = "visible";
@@ -23,13 +25,22 @@ const ready = () => {
 	});
 
 	infoButton.addEventListener("click", () => {
-		console.log("click");
 		modal.classList.add("active");
+		modalShowTimer = setTimeout(() => {
+			modalContent.classList.add("active");
+			clearInterval(modalShowTimer);
+			modalShowTimer = null;
+		}, 300);
 		infoButton.classList.add("pressed");
 	});
 
 	modalButton.addEventListener("click", () => {
-		modal.classList.remove("active");
+		modalContent.classList.remove("active");
+		modalShowTimer = setTimeout(() => {
+			modal.classList.remove("active");
+			clearInterval(modalShowTimer);
+			modalShowTimer = null;
+		}, 400);
 	});
 };
 

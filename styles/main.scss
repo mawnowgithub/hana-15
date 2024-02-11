@@ -5,7 +5,7 @@ body {
 	margin: 0;
 	padding: 0;
 	background-color: #b2dbc0;
-	font-family: sans-serif;
+	font-family: "Noto Serif", serif;
 }
 
 div {
@@ -103,27 +103,39 @@ main {
 }
 
 .modal {
-	display: none;
-	z-index: 30;
+	display: flex;
+	z-index: -30;
 	height: 100%;
 	width: 100%;
 	padding: 50px;
 	position: relative;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
 
 	&.active {
-		display: block;
+		display: flex;
+		flex-flow: column;
+		justify-content: center;
+		background-color: rgb(228 153 71 / 50%);
+		z-index: 30;
+		opacity: 1;
 	}
 
 	&__content {
-		padding: 20px 20px 50px 20px;
+		padding: 50px 20px;
 		border-radius: 10px;
-		background-color: rgb(137 7 147 / 65%);
+		background-color: rgb(26 3 68 / 65%);
 		color: white;
 		position: relative;
-		height: 100%;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		opacity: 0;
+		transition: opacity 0.3s ease-in-out;
+
+		&.active {
+			opacity: 1;
+		}
 	}
 
 	&__button {
