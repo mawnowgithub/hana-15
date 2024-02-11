@@ -31,7 +31,7 @@ const ready = () => {
 		let name = urlParams.get("name");
 		const genre = urlParams.get("gen");
 		name = name?.replaceAll("_", " ");
-		const plural = name?.search(" y ") > -1 || name?.search("F. ") > -1;
+		const plural = name?.search(" y ") > -1 || name?.search("Flia. ") > -1;
 		console.log(plural);
 		if (name) {
 			frontGreet.innerHTML = name;
